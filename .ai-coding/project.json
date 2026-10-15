@@ -1,0 +1,15 @@
+{
+  "name": "学海灯塔 · 错题本",
+  "nameSource": "confirmed-design",
+  "purpose": "孩子专用单机错题本：截图/拍照录入错题，3D翻转卡片闭卷自测与掌握状态流转，A4双栏重练组卷打印，本地数据备份恢复",
+  "identityStatus": "confirmed-design",
+  "slug": "aicoding-3f8001b4",
+  "appId": "com.aicoding.aicoding3f8001b4",
+  "sourceDirectory": "app",
+  "image": "crpi-iqktgpu6dyytuxiu.cn-hangzhou.personal.cr.aliyuncs.com/aipractice/knowstar-classroom@sha256:874c72192fff872157598d86869c56dae38edc406b5705d232271fd998ad3409",
+  "port": 5189,
+  "containerRuntime": "docker",
+  "networkMode": "bridge",
+  "capabilities": [],
+  "businessProfile": null
+}

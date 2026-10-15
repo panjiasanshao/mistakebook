@@ -1,0 +1,14 @@
+.env
+.local/
+.cloudbase-setup/
+.github-setup/
+.ai-setup/
+.course-setup/
+.docker-setup/
+.podman-setup/
+toolchain-verification.json
+environment-checklist.md
+app/node_modules/
+app/dist/
+app/android/
+*.apk
