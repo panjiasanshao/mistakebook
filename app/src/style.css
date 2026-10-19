@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #1f2937;
+  background: #f8fafc;
+  font-family: 'Noto Sans SC', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --app-primary: #4f46e5;
+  --app-primary-dark: #4338ca;
+  --app-primary-light: #eef2ff;
+  --app-primary-text: #4338ca;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* 3D 翻转卡片核心样式（与原型 v1.html 对齐） */
+.flip-card {
+  perspective: 1000px;
+  min-height: 400px;
+  height: 400px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 0.75rem;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.flip-card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+/* 彻底解决 3D 翻转后背面点击被正面透明层拦截的问题 */
+.flip-card.flipped .flip-card-front {
+  pointer-events: none !important;
+  z-index: 1 !important;
+  visibility: hidden;
+}
+
+.flip-card.flipped .flip-card-back {
+  pointer-events: auto !important;
+  z-index: 10 !important;
+  visibility: visible;
+}
+
+.flip-card:not(.flipped) .flip-card-back {
+  pointer-events: none !important;
+  visibility: hidden;
+}
+
+.flip-card:not(.flipped) .flip-card-front {
+  pointer-events: auto !important;
+  visibility: visible;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 9999px;
+}
+
+/* 试卷打印专享样式 */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printArea,
+  #printArea * {
+    visibility: visible;
+  }
+  #printArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-columns {
+    column-count: 2;
+    column-gap: 24px;
+    column-rule: 1px dashed #cbd5e1;
+  }
+  .print-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .print-page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+}
